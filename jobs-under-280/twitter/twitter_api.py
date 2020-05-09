@@ -7,3 +7,6 @@ class TwitterAPI:
     
     def tweet(self, status):
         self.api.update_status(status)
+
+    def send_dm(self, user_id, message):
+        self.api.send_direct_message(user_id, message)

@@ -12,13 +12,13 @@ from jobs.hackernews import HackerNewsAPI
 # Load environment variables
 load_dotenv()
 
-# Initialize Twitter API
 consumer_key = os.getenv("API_KEY")
 consumer_secret = os.getenv("API_SECRET_KEY")
 access_token = os.getenv("ACCESS_TOKEN")
 access_token_secret = os.getenv("ACCESS_TOKEN_SECRET")
 db_uri = os.getenv("DB_URI")
 
+# Initialize Twitter API
 twitter_api = TwitterAPI(consumer_key, \
     consumer_secret, 
     access_token, 
@@ -29,7 +29,7 @@ session = initialize_db(db_uri)
 
 # Initialize Services
 tweet_service = TweetService(session, twitter_api)
-job_service = JobService(session)
+job_service = JobService(session, twitter_api)
 
 if __name__ == "__main__":
     args = get_arguments()
