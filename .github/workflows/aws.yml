@@ -12,5 +12,5 @@ jobs:
           USERNAME: ${{ secrets.USER }}
           KEY: ${{ secrets.KEY }}
           SCRIPT: | 
-            rm -f job-under-280 
+            rm -rf job-under-280 
             git clone https://github.com/adylanrff/job-under-280 
