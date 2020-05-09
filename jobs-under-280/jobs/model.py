@@ -10,6 +10,12 @@ class Job(Base):
         primary_key=True,
         nullable=False
     )
+
+    job_id=Column(
+        Integer, 
+        nullable=False
+    )
+
     title=Column(
         String,
         nullable=False,
@@ -18,7 +24,6 @@ class Job(Base):
     description=Column(
         Text, 
         nullable=True,
-        default="test"
     )
 
     link=Column(
