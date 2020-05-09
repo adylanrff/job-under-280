@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check environment variables
-        run: |
+        run:  |
           echo $USER
           echo $KEY
           echo $HOST
