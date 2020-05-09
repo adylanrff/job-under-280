@@ -12,8 +12,11 @@ class JobService(Service):
         hackernews_jobs = HackerNewsAPI.fetch_all_jobs()
         existing_jobs = self.session.query(Job).filter(Job.job_id.in_([job.job_id for job in hackernews_jobs]))
         exisiting_job_ids = [job.job_id for job in existing_jobs]
+        print(exisiting_job_ids)
         new_jobs = [job for job in hackernews_jobs if job.job_id not in exisiting_job_ids]
 
+        # TODO: Scrap AngelList
+        
         print("Found {} new jobs".format(len(new_jobs)))
 
         monitoring_twitter_acc = os.getenv("MONITORING_TWITTER_ACC")
@@ -21,5 +24,3 @@ class JobService(Service):
 
         self.session.add_all(new_jobs)
         self.session.commit()
-        # TODO: Scrap AngelList
-
