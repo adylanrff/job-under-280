@@ -5,10 +5,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Check environment variables
+        run: |
+          echo $USER
+          echo $KEY
+          echo $HOST
       - name: Deploy to AWS EC2
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USER }}
-          key: ${{ secrets.KEY }}
-          script: rm job-under-280 && git clone https://github.com/adylanrff/job-under-280 
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USER }}
+          KEY: ${{ secrets.KEY }}
+          SCRIPT: rm job-under-280 && git clone https://github.com/adylanrff/job-under-280 
