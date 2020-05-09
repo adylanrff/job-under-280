@@ -5,15 +5,14 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Install virtualenv
-        run: pip install virtualenv
       - name: Deploy to AWS EC2
         uses: appleboy/ssh-action@master
         with:
           HOST: ${{ secrets.HOST }}
           USERNAME: ${{ secrets.USER }}
           KEY: ${{ secrets.KEY }}
-          SCRIPT: | 
+          SCRIPT: |
+            pip install virtualenv 
             rm -rf job-under-280 
             git clone https://github.com/adylanrff/job-under-280 
             cd job-under-280
