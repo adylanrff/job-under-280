@@ -5,6 +5,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      - name: Install virtualenv
+        run: pip install virtualenv
       - name: Deploy to AWS EC2
         uses: appleboy/ssh-action@master
         with:
@@ -14,3 +16,8 @@ jobs:
           SCRIPT: | 
             rm -rf job-under-280 
             git clone https://github.com/adylanrff/job-under-280 
+            cd job-under-280
+            virtualenv venv python=python3
+            source venv/bin/activate
+            pip install -r requirements.txt
+            python cron.py
