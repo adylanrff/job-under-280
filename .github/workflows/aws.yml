@@ -1,14 +1,14 @@
-name: CI
+name: AWS VPS
 on: [push]
- 
+
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-    - name: Deploy to nerdhood.de
-      uses: appleboy/ssh-action@master
-      env:
-        USERNAME: ubuntu
-        HOST: 54.254.223.66
-        SCRIPT: echo $USER
-        KEY: ${{ secrets.KEY }}
+      - name: Deploy to AWS EC2
+        uses: appleboy/ssh-action@master
+        with:
+          HOST: ${{ secrets.HOST }}
+          USERNAME: ${{ secrets.USER }}
+          KEY: ${{ secrets.KEY }}
+          SCRIPT: rm job-under-280 && git clone https://github.com/adylanrff/job-under-280 
