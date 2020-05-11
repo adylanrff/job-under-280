@@ -1,8 +1,10 @@
 import datetime
 from sqlalchemy import Column, Integer, String, Text, DateTime, Float, Boolean, PickleType
-from db import Base
+from sqlalchemy.ext.declarative import declarative_base
 
-class Job(Base):
+JobBase = declarative_base()
+
+class Job(JobBase):
     __tablename__ = "job"
     
     id=Column(

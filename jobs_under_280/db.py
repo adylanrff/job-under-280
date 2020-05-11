@@ -1,12 +1,10 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
-from sqlalchemy.ext.declarative import declarative_base
 
-Base = declarative_base()
-
-def initialize_db(db_uri):
+def initialize_db(db_uri, bases):
     engine = create_engine(db_uri)
     Session = sessionmaker(bind=engine)
-    Base.metadata.create_all(engine)
+    for base in bases:
+        base.metadata.create_all(engine)
 
     return Session()
