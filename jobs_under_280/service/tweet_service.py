@@ -13,11 +13,14 @@ class TweetService(Service):
             .order_by(desc(Job.date))\
             .first()
 
-        message = job_to_tweet.title + " \n\n" + job_to_tweet.link
-        print("Tweeted: {}".format(message))
+        if job_to_tweet is not None:
+            message = job_to_tweet.title + " \n\n" + job_to_tweet.link
+            print("Tweeted: {}".format(message))
 
-        self.twitter_api.tweet(message)
-        
-        job_to_tweet.is_posted = True
-        self.session.commit()
+            self.twitter_api.tweet(message)
+            
+            job_to_tweet.is_posted = True
+            self.session.commit()
+        else:
+            print("No new jobs found")
         
