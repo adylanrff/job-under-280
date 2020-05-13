@@ -17,7 +17,7 @@ class TweetService(Service):
             .first()
 
         if job_to_tweet is not None:
-            message = job_to_tweet.title + " \n\n" + job_to_tweet.link + self.get_hashtags()
+            message = job_to_tweet.title + " \n\n" + job_to_tweet.link + ' ' + self.get_hashtags()
             print("Tweeted: {}".format(message))
 
             self.twitter_api.tweet(message)

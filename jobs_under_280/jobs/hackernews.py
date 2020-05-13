@@ -21,8 +21,10 @@ class HackerNewsAPI:
     def fetch_job(session, item_id):
         with session.get(HACKERNEWS_API_ITEM_URL.format(item_id)) as response:
             data = response.json()
-            job = HackerNewsAPI.parse_job(data)
-            return job
+            if data is not None:
+                job = HackerNewsAPI.parse_job(data)
+                return job
+            return None
 
     @staticmethod
     async def fetch_jobs(item_ids):
@@ -41,7 +43,8 @@ class HackerNewsAPI:
 
                 # Initializes the tasks to run and awaits their results
                 for job in await asyncio.gather(*tasks):
-                    HackerNewsAPI.jobs.append(job)
+                    if job is not None:
+                        HackerNewsAPI.jobs.append(job)
 
 
     @staticmethod
