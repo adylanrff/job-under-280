@@ -51,6 +51,6 @@ class HackerNewsAPI:
     def parse_job(json_resp):
         job = Job()
         job.title = json_resp.get('title', '')
-        job.job_id = json_resp.get('id', '')
+        job.job_id_external = str(json_resp.get('id', ''))
         job.link = json_resp.get('url', '')
         return job

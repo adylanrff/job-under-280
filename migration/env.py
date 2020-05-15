@@ -19,7 +19,6 @@ sys.path = ['', '..'] + sys.path[1:]
 # add your model's MetaData object here
 # for 'autogenerate' support
 from jobs_under_280.jobs.model import JobBase
-from jobs_under_280.twitter.model import TweetBase
 target_metadata = [JobBase.metadata]
 # target_metadata = None
 

@@ -13,8 +13,8 @@ class Job(JobBase):
         nullable=False
     )
 
-    job_id=Column(
-        Integer, 
+    job_id_external=Column(
+        String, 
         nullable=False
     )
 
